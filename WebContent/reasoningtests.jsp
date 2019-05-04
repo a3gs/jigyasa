@@ -247,7 +247,7 @@ String ques=null;
 String opa=null, opb=null, opc=null, opd=null;
 try{
 	%>
-	<form name="reasoning_quiz" action="resultcheck.jsp">
+	<form name="reasoning_quiz" action="resultcheck.jsp" method="post">
 	
 	
 	<% 

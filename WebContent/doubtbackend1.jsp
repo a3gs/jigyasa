@@ -36,7 +36,7 @@ i=stmt.executeUpdate("INSERT INTO `doubts`(`name`, `doubt`) VALUES ('"+name+"','
 		
          %>
 		<script>
-		if(alert("Thanks for submitting your doubt!!!");){
+		if(alert("Thanks for submitting your doubt!!!")){
 			<% response.sendRedirect("doubtforum.jsp");%>
 			
 		}

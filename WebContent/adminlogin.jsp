@@ -58,7 +58,7 @@ background-image:url(img/adminwall.jpg);
    
    
     
-    <form name="contact_form" class="login-form" action="adminlogin1.jsp">
+    <form name="contact_form" class="login-form" action="adminlogin1.jsp" method="post">
        <div class="span11">
 	            <div class="logo">
 	    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
