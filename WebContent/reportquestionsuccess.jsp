@@ -3,6 +3,16 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.util.*"%>
 
+<%@page import="javax.mail.*"%>
+<%@page import="javax.mail.Message" %>
+<%@page import="javax.mail.MessagingException" %>
+<%@page import="javax.mail.Session" %>
+<%@page import="javax.mail.Transport" %>
+<%@page import="javax.mail.Message.RecipientType" %>
+<%@page import="javax.mail.internet.AddressException" %>
+<%@page import="javax.mail.internet.InternetAddress" %>
+<%@page import="javax.mail.internet.MimeMessage" %>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -227,47 +237,98 @@
        
        
         </div>
+        <%
+        String driver = "com.mysql.jdbc.Driver";
+        String url = "jdbc:mysql://localhost:3306/jigyasa";
+        String Username = "root";
+        String dbpassword = "";
+        Connection con;
+        Statement stmt;
+        java.sql.ResultSet rs;
+        Class.forName(driver);
+       	/*create connection*/
+       	con = DriverManager.getConnection(url, Username, dbpassword);
+       	/*create statement*/
+       	stmt = con.createStatement();
+        Properties props = new Properties();
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", 465);
+		props.put("mail.smtp.user", "a3g.jigyasa@gmail.com");
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.debug", "true");
+		props.put("mail.smtp.socketFactory.port", 465);
+		props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
+		props.put("mail.smtp.socketFactory.fallback", "false");
+		String from="a3g.jigyasa@gmail.com";
+        String stu_emailid=request.getParameter("email");
+        String concern=request.getParameter("concern");
+        String sub="A question you posted has been reported";
+        String subject=(String)session.getAttribute("subject");
+        String ques, opa, opb, opc, opd;
+        int qid=(int)session.getAttribute("qid");
+        rs=stmt.executeQuery("SELECT * FROM `"+subject+"q` WHERE qid=" + qid);
+        rs.next();
+        ques=rs.getString("question");
+        opa=rs.getString("opa");
+        opb=rs.getString("opb");
+        opc=rs.getString("opc");
+        opd=rs.getString("opd");
+        String to=rs.getString("admin_emailid");
+        String text="A "+subject+" question you posted on our website with question id = "+qid+" has been reported by a student. \n The question is : \n"
+        		+ques+" \n (a) "+opa+"\n (b) "+opb+"\n (c) "+opc+"\n (d) "+opd+"\n The concern of the student is : \n"
+        +concern+"\n You can contact the student on "+stu_emailid+
+        ".\n You can modify the question through your admin panel by searching for the subject and question id";
+       
+        		Session mailSession = Session.getDefaultInstance(props);
+        mailSession.setDebug(true);
+		Message simpleMessage = new MimeMessage(mailSession);
+        InternetAddress fromAddress = null;
+		InternetAddress toAddress = null;
+		try {
+			fromAddress = new InternetAddress(from);
+			toAddress = new InternetAddress(to);
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		try {
+			simpleMessage.setFrom(fromAddress);
+			simpleMessage.setRecipient(RecipientType.TO, toAddress);
+			simpleMessage.setSubject(sub);
+			simpleMessage.setText(text);
+            simpleMessage.saveChanges(); 
+			Transport transport=mailSession.getTransport("smtp");
+			transport.connect("smtp.gmail.com","a3g.jigyasa@gmail.com","a3gforever");
+            
+            transport.sendMessage(simpleMessage, simpleMessage.getAllRecipients());
+            transport.close();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+%>
+        
         <!-- page start-->
-    <div class="row">
-              <!-- Bootsrep Editor -->
-              <div class="panel-body">
-           
-              
-            <div id="sendmessage">Your message has been sent. Thank you!</div>
-            <div id="errormessage"></div>
-            <form action="change.jsp" name="change_password_form" method="post" role="form" class="contactForm">
-               
-             
-              <div class="form-group">
-                <input id="pw" type="password" class="form-control"   data-rule="required" name="password"  placeholder="Enter your new password" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input id="pw2" type="password" class="form-control"   data-rule="required" name="password2"  placeholder="Enter your new password again" />
-                <div class="validation"></div>
-              </div>
-              
-              
-              <div class="text-center"><button type="button" class="btn btn-primary btn-lg" onclick="do_check()">Change password</button></div>
-              <input type="hidden" name="todo" value="changepassword" readonly="readonly" />
-	 
-            </form>
-</div>
-</div>
-
-
-
- 
-    
-   
-     
+<div class="panel-body">
+                <div class="alert alert-success fade in">
+                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="icon-remove"></i>
+                                  </button>
+                  <strong>This question has been reported successfully !!!</strong><br>The admin of this question will get in touch with you shortly.
+                </div>
+      
         <!-- page end-->
       </section>
     </section>
     <!--main content end-->
    
   </section>
-    
+   
+
+     
     
      
   <!-- container section end -->
@@ -285,31 +346,12 @@
 	   function redirect(){window.location = "homeendsession.jsp";}
 	   redirect();
 	  } else {
-		  function redirect2(){window.location = "changepassword.jsp#";};
+		  function redirect2(){window.location = "reportquestionsuccess.jsp#";};
 		  redirect2();
 	  
 	  }
   }
-
-
-  function do_check()
-   {
-     var str1 = $("#pw").val();
-     var str2 = $("#pw2").val();
-
-     if (str1 == str2)
-     {
-     	var frm = document.getElementsByName('change_password_form')[0];
-  	   frm.submit(); // Submit the form
-  	   frm.reset();  // Reset all form data
-  	   return false; // Prevent page refresh
-     }
-     else
-     {
-       alert("Passwords don't match!!!");
-     }
-   }
-   
+  
   </script>
   
     <script src="js2/jquery-1.8.3.min.js"></script>

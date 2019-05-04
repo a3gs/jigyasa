@@ -228,33 +228,118 @@
        
         </div>
         <!-- page start-->
+ <%
+ String driver = "com.mysql.jdbc.Driver";
+ String url = "jdbc:mysql://localhost:3306/jigyasa";
+ String Username = "root";
+ String dbpassword = "";
+ Connection con;
+ Statement stmt;
+ java.sql.ResultSet rs;
+ Class.forName(driver);
+	/*create connection*/
+	con = DriverManager.getConnection(url, Username, dbpassword);
+	/*create statement*/
+	stmt = con.createStatement();
+ String subject=(String)request.getParameter("subject");
+ int qid=Integer.parseInt(request.getParameter("qid"));
+session.setAttribute("subject", subject);
+session.setAttribute("qid", qid);
+if(subject.equalsIgnoreCase("maths")){
+	 rs = stmt.executeQuery("SELECT * FROM `mathsq` WHERE qid=" + qid); 
+}
+else if(subject.equalsIgnoreCase("reasoning")){
+	 rs = stmt.executeQuery("SELECT * FROM `reasoningq` WHERE qid=" + qid); 
+}
+else if(subject.equalsIgnoreCase("english")){
+	 rs = stmt.executeQuery("SELECT * FROM `englishq` WHERE qid=" + qid); 
+}
+else if(subject.equalsIgnoreCase("genaw")){
+	 rs = stmt.executeQuery("SELECT * FROM `genawq` WHERE qid=" + qid); 
+}
+else if(subject.equalsIgnoreCase("gensc")){
+	 rs = stmt.executeQuery("SELECT * FROM `genscq` WHERE qid=" + qid); 
+}
+else if(subject.equalsIgnoreCase("jee")){
+	 rs = stmt.executeQuery("SELECT * FROM `jeeq` WHERE qid=" + qid); 
+}
+else{
+	 rs = stmt.executeQuery("SELECT * FROM `gatecseq` WHERE qid=" + qid); 
+}
+ rs.next();
+ String wr_ques=rs.getString("question");
+ String opa=rs.getString("opa");
+ String opb=rs.getString("opb");
+ String opc=rs.getString("opc");
+ String opd=rs.getString("opd");
+ String corr=rs.getString("correct");
+ 
+%>
+ <h3> Report a question</h3>
+  <br><br>
+  <h4>This message will be emailed to the admin who posted this question.</h4>
+  
+  
+  
     <div class="row">
               <!-- Bootsrep Editor -->
               <div class="panel-body">
            
+            <div style="margin-left:20px;text-align:justify;"><h3> <%= wr_ques %> </h3></div>
+
+                        <ol type="A">
+                       
+                                                  
+                                               <li>   <%= opa %>
+                                               </li>                                              
+                 
+                    
+                      
+                                           <li>       
+                                                  <%= opb %>
+                                            </li>
+                 
+	                 
+                        
+                                                <li>  
+                                                  <%= opc %>
+                                          </li>
+                     
+                      <li>
+                                                  
+                                                  <%= opd %>
+                          </li>                   
+                                              </ol>
+                      </div>
+	
+	                  <div class="panel-body">
+               
+                  <div class="alert alert-success fade in">
+                  <button data-dismiss="alert" class="close close-sm" type="button">
+                                      <i class="icon-remove"></i>
+                                  </button>
+                  <strong>Correct Response:</strong>  <%= corr %>               
+                  
+        	 </div>
               
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
-            <form action="change.jsp" name="change_password_form" method="post" role="form" class="contactForm">
-               
+            <form action="reportquestionsuccess.jsp" method="post" role="form" class="contactForm">
+               <div class="form-group">
+                <textarea class="form-control" name="concern" rows="8" data-rule="required" data-msg="Please write your concern with the question here." placeholder="Please write your concern with the question here."></textarea>
+                <div class="validation"></div>
+              </div>
+              <div class="form-group">
+                <input type="email" class="form-control"   data-rule="required" name="email"  placeholder="Enter your email id so admin can contact you" />
+                <div class="validation"></div>
+              </div>
+              
+            
+              <div class="text-center"><button type="submit" class="btn btn-primary btn-lg">Report this question</button></div>
              
-              <div class="form-group">
-                <input id="pw" type="password" class="form-control"   data-rule="required" name="password"  placeholder="Enter your new password" />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input id="pw2" type="password" class="form-control"   data-rule="required" name="password2"  placeholder="Enter your new password again" />
-                <div class="validation"></div>
-              </div>
-              
-              
-              <div class="text-center"><button type="button" class="btn btn-primary btn-lg" onclick="do_check()">Change password</button></div>
-              <input type="hidden" name="todo" value="changepassword" readonly="readonly" />
-	 
+	
             </form>
 </div>
-</div>
-
 
 
  
@@ -267,7 +352,9 @@
     <!--main content end-->
    
   </section>
-    
+   
+
+     
     
      
   <!-- container section end -->
@@ -285,31 +372,12 @@
 	   function redirect(){window.location = "homeendsession.jsp";}
 	   redirect();
 	  } else {
-		  function redirect2(){window.location = "changepassword.jsp#";};
+		  function redirect2(){window.location = "reportquestion.jsp#";};
 		  redirect2();
 	  
 	  }
   }
-
-
-  function do_check()
-   {
-     var str1 = $("#pw").val();
-     var str2 = $("#pw2").val();
-
-     if (str1 == str2)
-     {
-     	var frm = document.getElementsByName('change_password_form')[0];
-  	   frm.submit(); // Submit the form
-  	   frm.reset();  // Reset all form data
-  	   return false; // Prevent page refresh
-     }
-     else
-     {
-       alert("Passwords don't match!!!");
-     }
-   }
-   
+  
   </script>
   
     <script src="js2/jquery-1.8.3.min.js"></script>

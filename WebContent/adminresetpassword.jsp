@@ -1,6 +1,9 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
 
+
+<%@page import="java.util.*"%>
+
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -17,7 +20,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="ico/favicon.png">
 
-  <title>JIGYASA - desire to learn</title>
+  <title>Login Page 2 | Creative - Bootstrap 3 Responsive Admin Template</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -46,19 +49,23 @@
 
 </head>
 <body style="
-background-image:url(img/library.jpg);
+background-image:url(img/adminwall.jpg);
 -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;">
 
+
+
+<%
+%>
   <div class="container">
 
    
    
    
     
-    <form name="contact_form" class="login-form" action="login1.jsp" method="post">
+    <form name="reset_password_form" class="login-form" action="adminresetpassword1.jsp" method="post">
        <div class="span11">
 	            <div class="logo">
 	    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
@@ -71,29 +78,53 @@ background-image:url(img/library.jpg);
       <div class="login-wrap">
        
         <div class="input-group">
-          <span class="input-group-addon"><i class="icon-user"></i></span>
-          <input type="text" class="form-control" placeholder="Username" name="username" autofocus>
+          <span class="input-group-addon"><i class="icon-lock"></i></span> 
+          <input id="p1" type="password" class="form-control" placeholder="Enter new password" name="password" autofocus>
         </div>
         <div class="input-group">
-          <span class="input-group-addon"><i class="icon-lock"></i></span>
-          <input type="password" class="form-control" placeholder="Password" name="password">
+          <span class="input-group-addon"><i class="icon-lock"></i></span> 
+          <input id="p2" type="password" class="form-control" placeholder="Confirm new password" name="password2" autofocus>
         </div>
+        
        
                 
        
-    <a href = "forgotpassword.jsp" style="text-decoration:none;"><button class="btn btn-success btn-lg btn-block" type="button">Forgot password??</button></a>
-    <button class="btn btn-theme btn-block" type="submit">Login</button>
-         <a href="signup.jsp" style="text-decoration:none;"><button class="btn btn-info btn-lg btn-block" type="button">Signup</button></a> 
-      </div>
+    <button class="btn btn-primary btn-block" type="button" onclick="do_check()">Change password</button>
+    
+    
+       </div>
     </form>
   
    
   </div>
 
 
-<script type="text/javascript">
- 
+<script>
+function do_check()
+{
+  var str1 = $("#p1").val();
+  var str2 = $("#p2").val();
+
+  if (str1 == str2)
+  {
+  	var frm = document.getElementsByName('reset_password_form')[0];
+	   frm.submit(); // Submit the form
+	   frm.reset();  // Reset all form data
+	   return false; // Prevent page refresh
+  }
+  else
+  {
+    alert("Passwords don't match!!!");
+  }
+}
    </script>
+   <script src="js2/jquery.js"></script>
+  <script src="js2/bootstrap.min.js"></script>
+  <!-- nice scroll -->
+  <script src="js2/jquery.scrollTo.min.js"></script>
+  <script src="js2/jquery.nicescroll.js" type="text/javascript"></script>
+  <!--custom script for all page-->
+  <script src="js2/scripts.js"></script>
 </body>
 
 </html>

@@ -16,7 +16,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="ico/favicon.png">
 
-  <title>JIGYASA Test Series</title>
+  <title>JIGYASA - desire to learn</title>
 
  
   <!-- Bootstrap CSS -->
@@ -330,7 +330,7 @@
 	   function redirect(){window.location = "homeendsession.jsp";}
 	   redirect();
 	  } else {
-		  function redirect2(){window.location = "testserieshome.jsp";};
+		  function redirect2(){window.location = "profile.jsp#";};
 		  redirect2();
 	  
 	  }

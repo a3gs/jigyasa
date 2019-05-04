@@ -1,6 +1,6 @@
 <%@page import="java.sql.DriverManager"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="com.captcha.botdetect.web.servlet.Captcha"%> 
+
 
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

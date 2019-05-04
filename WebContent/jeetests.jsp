@@ -15,7 +15,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="ico/favicon.png">
 
-  <title>JIGYASA Test Series</title>
+  <title>JIGYASA - desire to learn</title>
 
  
   <!-- Bootstrap CSS -->
@@ -62,7 +62,7 @@
         <!-- notification dropdown start-->
         <div> 
         Time Left :: 
-        <input id="minutes" type="text" style="width: 10px; 
+        <input id="minutes" type="text" style="width: 20px; 
              border: none; font-size: 16px;  
             font-weight: bold; color: black; "><font size="5"> : 
                         </font> 
@@ -332,7 +332,7 @@ try{
 	   function redirect(){window.location = "homeendsession.jsp";}
 	   redirect();
 	  } else {
-		  function redirect2(){window.location = "testserieshome.jsp";};
+		  function redirect2(){window.location = "jeetests.jsp#";};
 		  redirect2();
 	  
 	  }
@@ -353,7 +353,7 @@ function submitForm() {
 	   return false; // Prevent page refresh
 	}
         //set minutes 
-        var mins = 1; 
+        var mins = 30; 
   
         //calculate the seconds 
         var secs = mins * 60; 

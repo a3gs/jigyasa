@@ -18,9 +18,9 @@
 		Connection con;
 		Statement stmt;
 		java.sql.ResultSet rs;
-        String u=(String)session.getAttribute("username");
-		String todo = request.getParameter("todo");
-		
+		String email = (String) session.getAttribute("email");
+		String pass = request.getParameter("password");
+
 		try {
 			/*register driver*/
 			Class.forName(driver);
@@ -29,29 +29,10 @@
 			/*create statement*/
 			stmt = con.createStatement();
 			/*execute query*/
-			if(todo.equalsIgnoreCase("changename")){
-				String name = request.getParameter("name");
-				stmt
-				.executeUpdate("UPDATE `user_profile` SET name='"+name+"' WHERE username='"+u+"'"); 
-		        response.sendRedirect("profile.jsp");
-	
-			}
-			else if(todo.equalsIgnoreCase("changeemail")){
-				String email = request.getParameter("email");
-				stmt
-				.executeUpdate("UPDATE `user_profile` SET email='"+email+"' WHERE username='"+u+"'"); 
-		        response.sendRedirect("profile.jsp");
-	
-			}
-			else if(todo.equalsIgnoreCase("changepassword")){
-				String password = request.getParameter("password");
-				stmt
-				.executeUpdate("UPDATE `user_profile` SET password='"+password+"' WHERE username='"+u+"'"); 
-		        response.sendRedirect("profile.jsp");
-	
-			}
-			
-						
+
+			stmt.executeUpdate("UPDATE `admin_profile` SET password='" + pass + "' WHERE email='" + email + "'");
+			response.sendRedirect("adminpasswordchangesuccess.jsp");
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

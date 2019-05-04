@@ -17,7 +17,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="ico/favicon.png">
 
-  <title>JIGYASA - desire to learn</title>
+  <title>Login Page 2 | Creative - Bootstrap 3 Responsive Admin Template</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -46,19 +46,24 @@
 
 </head>
 <body style="
-background-image:url(img/library.jpg);
+background-image:url(img/adminwall.jpg);
 -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;">
 
+<%
+HttpSession sessiona=request.getSession();
+sessiona.invalidate();
+
+
+%>
   <div class="container">
 
    
-   
+   <form class="login-form" action="adminlogin.jsp" method="post">
    
     
-    <form name="contact_form" class="login-form" action="login1.jsp" method="post">
        <div class="span11">
 	            <div class="logo">
 	    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
@@ -70,30 +75,23 @@ background-image:url(img/library.jpg);
       
       <div class="login-wrap">
        
-        <div class="input-group">
-          <span class="input-group-addon"><i class="icon-user"></i></span>
-          <input type="text" class="form-control" placeholder="Username" name="username" autofocus>
-        </div>
-        <div class="input-group">
-          <span class="input-group-addon"><i class="icon-lock"></i></span>
-          <input type="password" class="form-control" placeholder="Password" name="password">
-        </div>
-       
+        
+        <div class="panel panel-success">
+					<div class="panel-heading">Password change successful...</div>
+
+				</div>
                 
        
-    <a href = "forgotpassword.jsp" style="text-decoration:none;"><button class="btn btn-success btn-lg btn-block" type="button">Forgot password??</button></a>
-    <button class="btn btn-theme btn-block" type="submit">Login</button>
-         <a href="signup.jsp" style="text-decoration:none;"><button class="btn btn-info btn-lg btn-block" type="button">Signup</button></a> 
-      </div>
-    </form>
+    
+     <a href="adminlogin.jsp" style="text-decoration:none;"><button class="btn btn-info btn-lg btn-block" >Back to login page...</button></a>
+        </div>
+      
   
+  </form>
    
   </div>
 
 
-<script type="text/javascript">
- 
-   </script>
 </body>
 
 </html>

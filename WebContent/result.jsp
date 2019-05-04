@@ -15,7 +15,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="ico/favicon.png">
 
-  <title>JIGYASA Test Series</title>
+  <title>JIGYASA - desire to learn</title>
 
  
   <!-- Bootstrap CSS -->
@@ -321,6 +321,7 @@ java.sql.ResultSet rs;
                   <strong>Correct Response:</strong>  <%= corr %>               
                   
         	 </div>
+        	 <a class="btn btn-default" href="reportquestion.jsp?qid=<%= wrong_qids[i] %>&subject=<%= subject %>" title="Report this question">Report this question</a>
                   </div>
 	                 
 	                <% } %>
@@ -336,6 +337,10 @@ java.sql.ResultSet rs;
         	  {
         		 rs = stmt.executeQuery("SELECT * FROM `mathsq` WHERE qid=" + un_ques[i]);
         	  }
+        	 else if(subject.equalsIgnoreCase("english")) 
+       	  {
+       		 rs = stmt.executeQuery("SELECT * FROM `englishq` WHERE qid=" + un_ques[i]);
+       	  }
         	
         	 else if(subject.equalsIgnoreCase("reasoning")) 
        	    {
@@ -405,6 +410,7 @@ java.sql.ResultSet rs;
                   <strong>Correct Response:</strong>  <%= corr %>               
                   
         	 </div>
+        	  <a class="btn btn-default" href="reportquestion.jsp?qid=<%= un_ques[i] %>&subject=<%= subject %>" title="Report this question">Report this question</a>
                   </div>
 	                 
 	                 
@@ -432,7 +438,7 @@ java.sql.ResultSet rs;
 	   function redirect(){window.location = "homeendsession.jsp";}
 	   redirect();
 	  } else {
-		  function redirect2(){window.location = "testserieshome.jsp";};
+		  function redirect2(){window.location = "result.jsp#";};
 		  redirect2();
 	  
 	  }

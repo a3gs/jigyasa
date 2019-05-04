@@ -17,7 +17,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="ico/favicon.png">
 
-  <title>Login Page 2 | Creative - Bootstrap 3 Responsive Admin Template</title>
+  <title>JIGYASA - desire to learn</title>
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -51,7 +51,10 @@ background-image:url(img/library.jpg);
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;">
-
+<%
+HttpSession sessiona=request.getSession();
+sessiona.invalidate();
+%>
   <div class="container">
 
    
