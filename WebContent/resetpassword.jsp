@@ -104,8 +104,10 @@ function do_check()
 {
   var str1 = $("#p1").val();
   var str2 = $("#p2").val();
-
-  if (str1 == str2)
+  if (str1 == "" || str2 == ""){
+	    alert("Please fill both password fields");
+	  }
+  else if (str1 == str2)
   {
   	var frm = document.getElementsByName('reset_password_form')[0];
 	   frm.submit(); // Submit the form

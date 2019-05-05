@@ -202,7 +202,7 @@
               
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
-            <form action="submitquestion.jsp" method="post" role="form" class="contactForm">
+            <form name="submit_ques_form" action="submitquestion.jsp" method="post" role="form" class="contactForm">
                <div class="form-group">
                 <textarea class="form-control" name="question" rows="5" data-rule="required" data-msg="Please write your question here" placeholder="Question"></textarea>
                 <div class="validation"></div>
@@ -228,7 +228,7 @@
                 <input type="text" class="form-control"  data-rule="required" name="correct"  placeholder="Correct Option (Enter a, b, c or d)"  data-msg="Enter a, b, c or d" />
                 <div class="validation"></div>
               </div>
-              <div class="text-center"><button type="submit" class="btn btn-primary btn-lg">Submit question</button></div>
+              <div class="text-center"><button type="button" class="btn btn-primary btn-lg" onclick="validation()">Submit question</button></div>
               <input type="hidden" name="subject" value="reasoning" readonly="readonly" />
 	
             </form>
@@ -293,7 +293,27 @@
   }
   
   </script>
-
+<script type ="text/javascript">  
+function validation(){  
+	 var c = document.forms ["submit_ques_form"]["question"].value;  
+	    var c1 = document.forms ["submit_ques_form"]["opa"].value;  
+	    var u = document.forms["submit_ques_form"]["opb"].value;
+		  var p = document.forms["submit_ques_form"]["opc"].value;
+		  var n = document.forms["submit_ques_form"]["opd"].value;  
+		  var e = document.forms["submit_ques_form"]["correct"].value;  
+		  if (c == "" || c1 == "" || u == "" || p == "" ||n == "" ||e == "" ) {
+		    alert("All fields must be filled out");
+		    
+		  }
+		  else
+		     {
+		     	var frm = document.getElementsByName('submit_ques_form')[0];
+		  	   frm.submit(); // Submit the form
+		  	   frm.reset();  // Reset all form data
+		  	   return false; // Prevent page refresh
+		     }
+}  
+</script>
 
 </body>
 

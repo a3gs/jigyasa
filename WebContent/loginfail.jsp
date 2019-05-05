@@ -57,7 +57,7 @@
 
 
 
-		<form name="contact_form" class="login-form" action="login1.jsp" method="post">
+		<form name="login_form" class="login-form" action="login1.jsp" method="post">
 			<div class="span11">
 				<div class="logo">
 
@@ -97,8 +97,7 @@
 
 		
 			 <a href = "forgotpassword.jsp" style="text-decoration:none;"><button class="btn btn-success btn-lg btn-block">Forgot password??</button></a>
-   	<button class="btn btn-theme btn-block" type="button"
-					onclick="submitForm()">Login</button>
+   	<button class="btn btn-theme btn-block" type="button" onclick="validation()">Login</button>
 				
 			   <a href="signup.jsp" style="text-decoration:none;"><button class="btn btn-info btn-lg btn-block" >Signup</button></a>
      
@@ -110,22 +109,31 @@
 
 				</div>
 			</div>
-	</div>
 	</form>
+	</div>
+	
 
 
 	<script type="text/javascript">
-		function submitForm() {
-			// Get the first form with the name
-			// Usually the form name is not repeated
-			// but duplicate names are possible in HTML
-			// Therefore to work around the issue, enforce the correct index
-			var frm = document.getElementsByName('contact_form')[0];
-			frm.submit(); // Submit the form
-			frm.reset(); // Reset all form data
-			return false; // Prevent page refresh
-		}
-	</script>
+
+function validation(){  
+	 
+	    var u = document.forms["login_form"]["username"].value;
+		  var p = document.forms["login_form"]["password"].value;
+		    
+		  if (u == "" || p == "") {
+		    alert("All fields must be filled out");
+		  }
+		  else
+			  {
+			  var frm = document.getElementsByName('login_form')[0];
+				frm.submit(); // Submit the form
+				frm.reset(); // Reset all form data
+				return false; // Prevent page refresh
+			  }
+	   
+}  
+</script>
 </body>
 
 </html>

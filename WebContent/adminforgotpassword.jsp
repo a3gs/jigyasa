@@ -58,7 +58,7 @@ background-image:url(img/adminwall.jpg);
    
    
     
-    <form name="contact_form" class="login-form" action="admincheckemailaccount.jsp" method="post">
+    <form name="email_form" class="login-form" action="admincheckemailaccount.jsp" method="post">
        <div class="span11">
 	            <div class="logo">
 	    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
@@ -79,14 +79,33 @@ background-image:url(img/adminwall.jpg);
                 
        
     
-    <button class="btn btn-theme btn-block" type="submit">Send OTP</button>
+    <button class="btn btn-theme btn-block" type="button" onclick="validation()">Send OTP</button>
        </div>
     </form>
   
    
   </div>
 
+<script type="text/javascript">
 
+function validation(){  
+	 
+	    var u = document.forms["email_form"]["email"].value;
+		  
+		    
+		  if (u == "") {
+		    alert("All fields must be filled out");
+		  }
+		  else
+			  {
+			  var frm = document.getElementsByName('email_form')[0];
+				frm.submit(); // Submit the form
+				frm.reset(); // Reset all form data
+				return false; // Prevent page refresh
+			  }
+	   
+}  
+</script>
 </body>
 
 </html>

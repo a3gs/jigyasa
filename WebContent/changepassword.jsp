@@ -296,8 +296,11 @@
    {
      var str1 = $("#pw").val();
      var str2 = $("#pw2").val();
-
-     if (str1 == str2)
+     
+	  if (str1 == "" || str2 == "") {
+	    alert("All fields must be filled out");
+	  }
+	  else if (str1 == str2)
      {
      	var frm = document.getElementsByName('change_password_form')[0];
   	   frm.submit(); // Submit the form
@@ -311,6 +314,7 @@
    }
    
   </script>
+
   
     <script src="js2/jquery-1.8.3.min.js"></script>
  

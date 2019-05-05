@@ -58,7 +58,7 @@ background-image:url(img/library.jpg);
    
    
     
-    <form name="contact_form" class="login-form" action="login1.jsp" method="post">
+    <form name="login_form" class="login-form" action="login1.jsp" method="post">
        <div class="span11">
 	            <div class="logo">
 	    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
@@ -82,18 +82,33 @@ background-image:url(img/library.jpg);
                 
        
     <a href = "forgotpassword.jsp" style="text-decoration:none;"><button class="btn btn-success btn-lg btn-block" type="button">Forgot password??</button></a>
-    <button class="btn btn-theme btn-block" type="submit">Login</button>
+    <button class="btn btn-theme btn-block" type="button" onclick="validation()">Login</button>
          <a href="signup.jsp" style="text-decoration:none;"><button class="btn btn-info btn-lg btn-block" type="button">Signup</button></a> 
       </div>
     </form>
   
    
   </div>
-
-
 <script type="text/javascript">
- 
-   </script>
+
+function validation(){  
+	 
+	    var u = document.forms["login_form"]["username"].value;
+		  var p = document.forms["login_form"]["password"].value;
+		    
+		  if (u == "" || p == "") {
+		    alert("All fields must be filled out");
+		  }
+		  else
+			  {
+			  var frm = document.getElementsByName('login_form')[0];
+				frm.submit(); // Submit the form
+				frm.reset(); // Reset all form data
+				return false; // Prevent page refresh
+			  }
+	   
+}  
+</script>
 </body>
 
 </html>

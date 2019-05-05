@@ -284,7 +284,7 @@ try{
                     placeholder="Your reply"></textarea>
                   <div class="validation"></div>
                   <div class="text-center">
-                    <button class="btn btn-theme btn-medium margintop10" type="submit">Post your reply</button>
+                    <button class="btn btn-theme btn-medium margintop10" type="button" onclick="submitForm()">Post your reply</button>
          </div>
                  
             
@@ -455,12 +455,21 @@ try{
 			// Usually the form name is not repeated
 			// but duplicate names are possible in HTML
 			// Therefore to work around the issue, enforce the correct index
-			var frm = document.getElementsByName('doubt_form')[0];
+			var u = document.forms["doubt_forum"]["name"].value;
+		  var e = document.forms["doubt_forum"]["reply"].value;  
+		  if (u == "" || e == "" ) {
+		    alert("All fields must be filled out");
+		    
+		  }
+		  else{
+			
+			var frm = document.getElementsByName('doubt_forum')[0];
 			frm.submit(); // Submit the form
 			frm.reset(); // Reset all form data
 			
 			return false; // Prevent page refresh
 		}
+	}
 	</script>
 <script>
 document.getElementById("success").innerHTML = "Thanks for submitting your doubt!!";

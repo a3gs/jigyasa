@@ -235,7 +235,7 @@
               
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
-            <form action="change.jsp" method="post" role="form" class="contactForm">
+            <form name="name_form" action="change.jsp" method="post" role="form" class="contactForm">
                
              
               <div class="form-group">
@@ -243,7 +243,7 @@
                 <div class="validation"></div>
               </div>
               
-              <div class="text-center"><button type="submit" class="btn btn-primary btn-lg">Change name</button></div>
+              <div class="text-center"><button type="button" class="btn btn-primary btn-lg" onclick="validation()">Change name</button></div>
               <input type="hidden" name="todo" value="changename" readonly="readonly" />
 	
             </form>
@@ -300,7 +300,26 @@
     <script src="js2/chartjs-custom.js"></script>
     <!--custome script for all page-->
   
+<script type="text/javascript">
 
+function validation(){  
+	 
+	    var u = document.forms["name_form"]["name"].value;
+		  
+		    
+		  if (u == "") {
+		    alert("All fields must be filled out");
+		  }
+		  else
+			  {
+			  var frm = document.getElementsByName('name_form')[0];
+				frm.submit(); // Submit the form
+				frm.reset(); // Reset all form data
+				return false; // Prevent page refresh
+			  }
+	   
+}  
+</script>
 
 
 

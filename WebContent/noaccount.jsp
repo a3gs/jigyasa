@@ -17,7 +17,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="ico/favicon.png">
 
-  <title>Login Page 2 | Creative - Bootstrap 3 Responsive Admin Template</title>
+  
 
   <!-- Bootstrap CSS -->
   <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -58,7 +58,7 @@ background-image:url(img/library.jpg);
    
    
     
-    <form name="contact_form" class="login-form" action="checkemailaccount.jsp" method="post">
+    <form name="email_form" class="login-form" action="checkemailaccount.jsp" method="post">
        <div class="span11">
 	            <div class="logo">
 	    &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp 
@@ -89,7 +89,26 @@ background-image:url(img/library.jpg);
   
    
   </div>
+<script type="text/javascript">
 
+function validation(){  
+	 
+	    var u = document.forms["email_form"]["username"].value;
+		 
+		    
+		  if (u == "") {
+		    alert("All fields must be filled out");
+		  }
+		  else
+			  {
+			  var frm = document.getElementsByName('email_form')[0];
+				frm.submit(); // Submit the form
+				frm.reset(); // Reset all form data
+				return false; // Prevent page refresh
+			  }
+	   
+}  
+</script>
 
 </body>
 

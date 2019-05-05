@@ -315,14 +315,44 @@
 	   // Usually the form name is not repeated
 	   // but duplicate names are possible in HTML
 	   // Therefore to work around the issue, enforce the correct index
+	  var u = document.forms["contact_form"]["name"].value;
+		  var p = document.forms["contact_form"]["email"].value;
+		  var n = document.forms["contact_form"]["subject"].value;  
+		  var e = document.forms["contact_form"]["message"].value;  
+		  if (u == "" || p == "" ||n == "" ||e == "" ) {
+		    alert("All fields must be filled out");
+		    
+		  }
+		  else{
+	   
 	   var frm = document.getElementsByName('contact_form')[0];
 	   frm.submit(); // Submit the form
 	   frm.reset();  // Reset all form data
 	   return false; // Prevent page refresh
 	}
-   
+   }
    
    </script>
+   <script type ="text/javascript">  
+function validation(){  
+	  
+	    var u = document.forms["contact_form"]["name"].value;
+		  var p = document.forms["contact_form"]["email"].value;
+		  var n = document.forms["contact_form"]["subject"].value;  
+		  var e = document.forms["contact_form"]["message"].value;  
+		  if (u == "" || p == "" ||n == "" ||e == "" ) {
+		    alert("All fields must be filled out");
+		    
+		  }
+		  else
+		     {
+		     	var frm = document.getElementsByName('contact_form')[0];
+		  	   frm.submit(); // Submit the form
+		  	   frm.reset();  // Reset all form data
+		  	   return false; // Prevent page refresh
+		     }
+}  
+</script>
   <script src="js/jquery.prettyPhoto.js"></script>
   <script src="js/portfolio/jquery.quicksand.js"></script>
   <script src="js/portfolio/setting.js"></script>

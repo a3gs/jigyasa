@@ -168,8 +168,10 @@ function do_check()
 {
   var str1 = $("#otp1").val();
   var str2 = $("#otp2").val();
-
-  if (str1 == str2)
+  if (str1 == ""){
+	    alert("Please fill the otp");
+	  }
+  else if (str1 == str2)
   {
   	var frm = document.getElementsByName('otp_form')[0];
 	   frm.submit(); // Submit the form
@@ -182,6 +184,7 @@ function do_check()
   }
 }
    </script>
+
    <script src="js2/jquery.js"></script>
   <script src="js2/bootstrap.min.js"></script>
   <!-- nice scroll -->

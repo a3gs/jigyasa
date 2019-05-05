@@ -235,7 +235,7 @@
               
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
-            <form action="change.jsp" method="post" role="form" class="contactForm">
+            <form name="email_form" action="change.jsp" method="post" role="form" class="contactForm">
                
              
               <div class="form-group">
@@ -243,7 +243,7 @@
                 <div class="validation"></div>
               </div>
               
-              <div class="text-center"><button type="submit" class="btn btn-primary btn-lg">Change email</button></div>
+              <div class="text-center"><button type="button" class="btn btn-primary btn-lg" onclick="validation()">Change email</button></div>
               <input type="hidden" name="todo" value="changeemail" readonly="readonly" />
 	
             </form>
@@ -289,6 +289,26 @@
   }
   
   </script>
+  <script type="text/javascript">
+
+function validation(){  
+	 
+	    var u = document.forms["email_form"]["email"].value;
+		  
+		    
+		  if (u == "") {
+		    alert("Please fill your new email id");
+		  }
+		  else
+			  {
+			  var frm = document.getElementsByName('email_form')[0];
+				frm.submit(); // Submit the form
+				frm.reset(); // Reset all form data
+				return false; // Prevent page refresh
+			  }
+	   
+}  
+</script>
   
     <script src="js2/jquery-1.8.3.min.js"></script>
  

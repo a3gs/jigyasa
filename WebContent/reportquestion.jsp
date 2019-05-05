@@ -324,18 +324,18 @@ else{
               
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
-            <form action="reportquestionsuccess.jsp" method="post" role="form" class="contactForm">
+            <form name="report_question" action="reportquestionsuccess.jsp" method="post" role="form" class="contactForm">
                <div class="form-group">
                 <textarea class="form-control" name="concern" rows="8" data-rule="required" data-msg="Please write your concern with the question here." placeholder="Please write your concern with the question here."></textarea>
                 <div class="validation"></div>
               </div>
               <div class="form-group">
-                <input type="email" class="form-control"   data-rule="required" name="email"  placeholder="Enter your email id so admin can contact you" />
+                <input type="email" class="form-control" data-rule="required" name="email"  placeholder="Enter your email id so admin can contact you" />
                 <div class="validation"></div>
               </div>
               
             
-              <div class="text-center"><button type="submit" class="btn btn-primary btn-lg">Report this question</button></div>
+              <div class="text-center"><button type="button" class="btn btn-primary btn-lg" onclick="do_check()">Report this question</button></div>
              
 	
             </form>
@@ -389,11 +389,27 @@ else{
     <script src="assets2/chart-master/Chart.js"></script>
     <!-- custom chart script for this page only-->
     <script src="js2/chartjs-custom.js"></script>
-    <!--custome script for all page-->
-  
+    <!--custom script for all page-->
+ <script> 
+function do_check()
+   { var u = document.forms["report_question"]["email"].value;
+	  var p = document.forms["report_question"]["concern"].value;
+		
+     
+	  if (u == "" || p == "") {
+	    alert("All fields must be filled out");
+	  }
+	  else 
+     {
+     	var frm = document.getElementsByName('report_question')[0];
+  	   frm.submit(); // Submit the form
+  	   frm.reset();  // Reset all form data
+  	   return false; // Prevent page refresh
+     }
+     
+   }
 
-
-
+</script>
 
 </body>
 
