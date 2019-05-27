@@ -114,7 +114,7 @@
                       </a>
           </li>
           <li class="">
-            <a class="" href="testserieshome.jsp">
+            <a class="" href="testseriesadmin.jsp">
                        
                           <span>Dashboard </span>
                       </a>
@@ -174,7 +174,14 @@
                       </a>
 
           </li>
+                   <li>
+            <a class="" href="modifyquestion.jsp">
+                          
+                          <span>Modify a question</span>
 
+                      </a>
+
+          </li>
           </ul>
         <!-- sidebar menu end-->
       </div>

@@ -198,8 +198,44 @@
           </div>
         </div>
         <!-- page start-->
-  <h3> English Questions</h3>
+  <h3> Modify the question</h3>
+  <%
+  String subject=(String)session.getAttribute("subject");
+  int qid=(int)session.getAttribute("qid");
+  System.out.println(subject);
+  System.out.println(qid);
+
+  String driver="com.mysql.jdbc.Driver";
+  String url="jdbc:mysql://localhost:3306/jigyasa";
+  String Username="root";
+  String dbpassword="";
+  Connection con;
+  Statement stmt;
+  java.sql.ResultSet rs;
+  String question=null, opa=null, opb=null, opc=null, opd=null, correct=null;
+  try{
+  	/*register driver*/
+  	Class.forName(driver);
+  	/*create connection*/
+  	con=DriverManager.getConnection(url,Username,dbpassword);
+  	/*create statement*/
+  	stmt=con.createStatement();
+  	/*execute query*/
+  	rs=stmt.executeQuery("SELECT * FROM `"+subject+"q` WHERE qid='"+qid+"'");
+  	if(rs.next()){
+  	question=rs.getString("question");
+  	opa=rs.getString("opa");
+  	opb=rs.getString("opb");
+  	opc=rs.getString("opc");
+  	opd=rs.getString("opd");
+  	correct=rs.getString("correct");
+  	}
   
+  }catch(Exception e){
+  	e.printStackTrace();
+  }
+  
+  %>
   
   
   
@@ -210,34 +246,34 @@
               
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
-            <form name="submit_ques_form" action="submitquestion.jsp" method="post" role="form" class="contactForm">
+            <form name="submit_ques_form" action="changequestion1.jsp" method="post" role="form" class="contactForm">
                <div class="form-group">
-                <textarea class="form-control" name="question" rows="5" data-rule="required" data-msg="Please write your question here" placeholder="Question"></textarea>
+                <textarea class="form-control" name="question" rows="5" data-rule="required" data-msg="Please write your question here" placeholder="Question"><%= question %></textarea>
                 <div class="validation"></div>
               </div>
              
               <div class="form-group">
-                <input type="text"class="form-control"   data-rule="required" name="opa"  placeholder="Option A" />
+                <input type="text"class="form-control"   data-rule="required" name="opa"  placeholder="Option A" value="<%= opa %>"/>
                 <div class="validation"></div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control"  data-rule="required" name="opb" placeholder="Option B"  />
+                <input type="text" class="form-control"  data-rule="required" name="opb" placeholder="Option B" value="<%= opb %>" />
                 <div class="validation"></div>
               </div>
               <div class="form-group">
-                <input type="text" class="form-control"  data-rule="required" name="opc"  placeholder="Option C" />
+                <input type="text" class="form-control"  data-rule="required" name="opc"  placeholder="Option C" value="<%= opc %>"/>
                 <div class="validation"></div>
               </div>
              <div class="form-group">
-                <input type="text" class="form-control"  data-rule="required" name="opd"  placeholder="Option D" />
+                <input type="text" class="form-control"  data-rule="required" name="opd"  placeholder="Option D" value="<%= opd %>"/>
                 <div class="validation"></div>
               </div>
                <div class="form-group">
-                <input type="text" class="form-control"  data-rule="required" name="correct"  placeholder="Correct Option (Enter a, b, c or d)"  data-msg="Enter a, b, c or d" />
+                <input type="text" class="form-control"  data-rule="required" name="correct"  placeholder="Correct Option (Enter a, b, c or d)"  data-msg="Enter a, b, c or d" value="<%= correct %>"/>
                 <div class="validation"></div>
               </div>
               <div class="text-center"><button type="button" class="btn btn-primary btn-lg" onclick="validation()">Submit question</button></div>
-              <input type="hidden" name="subject" value="english" readonly="readonly" />
+              <input type="hidden" name="subject" value="gensc" readonly="readonly" />
 	
             </form>
 </div>
@@ -294,14 +330,14 @@
 	   function redirect(){window.location = "homeendsession.jsp";}
 	   redirect();
 	  } else {
-		  function redirect2(){window.location = "englishquiz.jsp#";};
+		  function redirect2(){window.location = "genscquiz.jsp#";};
 		  redirect2();
 	  
 	  }
   }
   
   </script>
-  <script type ="text/javascript">  
+<script type ="text/javascript">  
 function validation(){  
 	 var c = document.forms ["submit_ques_form"]["question"].value;  
 	    var c1 = document.forms ["submit_ques_form"]["opa"].value;  
@@ -322,7 +358,6 @@ function validation(){
 		     }
 }  
 </script>
-
 
 </body>
 

@@ -114,7 +114,7 @@
                       </a>
           </li>
           <li class="">
-            <a class="" href="testserieshome.jsp">
+            <a class="" href="testseriesadmin.jsp">
                        
                           <span>Dashboard </span>
                       </a>
@@ -170,6 +170,14 @@
             <a class="" href="gatecsequiz.jsp">
                           
                           <span>GATE CSE</span>
+
+                      </a>
+
+          </li>
+                    <li>
+            <a class="" href="modifyquestion.jsp">
+                          
+                          <span>Modify a question</span>
 
                       </a>
 

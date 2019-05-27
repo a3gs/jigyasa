@@ -1,8 +1,3 @@
-<%@page import="java.sql.DriverManager"%>
-<%@page import="java.sql.Statement"%>
-<%@page import="java.sql.Connection"%>
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -19,7 +14,7 @@
   <title>JIGYASA - desire to learn</title>
 
  
- <!-- Bootstrap CSS -->
+  <!-- Bootstrap CSS -->
   <link href="css2/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
   <link href="css2/bootstrap-theme.css" rel="stylesheet">
@@ -27,13 +22,6 @@
   <!-- font icon -->
   <link href="css2/elegant-icons-style.css" rel="stylesheet" />
   <link href="css2/font-awesome.min.css" rel="stylesheet" />
-  <link href="css2/daterangepicker.css" rel="stylesheet" />
-  <link href="css2/bootstrap-datepicker.css" rel="stylesheet" />
-  <link href="css2/bootstrap-colorpicker.css" rel="stylesheet" />
-  <!-- date picker -->
-
-  <!-- color picker -->
-
   <!-- Custom styles -->
   <link href="css/style1.css" rel="stylesheet">
   <link href="css2/style-responsive.css" rel="stylesheet" />
@@ -174,7 +162,7 @@
                       </a>
 
           </li>
-                    <li>
+          <li>
             <a class="" href="modifyquestion.jsp">
                           
                           <span>Modify a question</span>
@@ -182,7 +170,7 @@
                       </a>
 
           </li>
-
+          
           </ul>
         <!-- sidebar menu end-->
       </div>
@@ -198,57 +186,40 @@
           </div>
         </div>
         <!-- page start-->
-  <h3> English Questions</h3>
-  
-  
-  
-  
-    <div class="row">
+       <%
+String subject=request.getParameter("subject");
+System.out.println(subject);
+session.setAttribute("subject", subject);
+%>
+        <h2>
+        Enter the qid of the question you want to modify
+      </h2>
+      <div class="row">
               <!-- Bootsrep Editor -->
               <div class="panel-body">
            
               
             <div id="sendmessage">Your message has been sent. Thank you!</div>
             <div id="errormessage"></div>
-            <form name="submit_ques_form" action="submitquestion.jsp" method="post" role="form" class="contactForm">
-               <div class="form-group">
-                <textarea class="form-control" name="question" rows="5" data-rule="required" data-msg="Please write your question here" placeholder="Question"></textarea>
-                <div class="validation"></div>
-              </div>
+            <form name="find_qid" action="checkqid.jsp" method="post" role="form" class="contactForm">
+               
              
               <div class="form-group">
-                <input type="text"class="form-control"   data-rule="required" name="opa"  placeholder="Option A" />
+                <input type="number" id="qid" class="form-control" data-rule="required" name="qid"  placeholder="Enter the qid" />
                 <div class="validation"></div>
               </div>
-              <div class="form-group">
-                <input type="text" class="form-control"  data-rule="required" name="opb" placeholder="Option B"  />
-                <div class="validation"></div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control"  data-rule="required" name="opc"  placeholder="Option C" />
-                <div class="validation"></div>
-              </div>
-             <div class="form-group">
-                <input type="text" class="form-control"  data-rule="required" name="opd"  placeholder="Option D" />
-                <div class="validation"></div>
-              </div>
-               <div class="form-group">
-                <input type="text" class="form-control"  data-rule="required" name="correct"  placeholder="Correct Option (Enter a, b, c or d)"  data-msg="Enter a, b, c or d" />
-                <div class="validation"></div>
-              </div>
-              <div class="text-center"><button type="button" class="btn btn-primary btn-lg" onclick="validation()">Submit question</button></div>
-              <input type="hidden" name="subject" value="english" readonly="readonly" />
+              
+              <div class="text-center"><button type="button" class="btn btn-primary btn-lg" onclick="validation()">Check question id</button></div>
+
 	
             </form>
+            
+            
+			
 </div>
-
-
-
-
-
-
-
-
+</div>
+      
+        
         <!-- page end-->
       </section>
     </section>
@@ -256,37 +227,13 @@
    
   </section>
   <!-- container section end -->
- <script src="js2/jquery.js"></script>
+  <!-- javascripts -->
+  <script src="js2/jquery.js"></script>
   <script src="js2/bootstrap.min.js"></script>
   <!-- nice scroll -->
   <script src="js2/jquery.scrollTo.min.js"></script>
   <script src="js2/jquery.nicescroll.js" type="text/javascript"></script>
-
-  <!-- jquery ui -->
-  <script src="js2/jquery-ui-1.9.2.custom.min.js"></script>
-
-  <!--custom checkbox & radio-->
-  <script type="text/javascript" src="js2/ga.js"></script>
-  <!--custom switch-->
-  <script src="js2/bootstrap-switch.js"></script>
-  <!--custom tagsinput-->
-  <script src="js2/jquery.tagsinput.js"></script>
-
-  <!-- colorpicker -->
-
-  <!-- bootstrap-wysiwyg -->
-  <script src="js2/jquery.hotkeys.js"></script>
-  <script src="js2/bootstrap-wysiwyg.js"></script>
-  <script src="js2/bootstrap-wysiwyg-custom.js"></script>
-  <script src="js2/moment.js"></script>
-  <script src="js2/bootstrap-colorpicker.js"></script>
-  <script src="js2/daterangepicker.js"></script>
-  <script src="js2/bootstrap-datepicker.js"></script>
-  <!-- ck editor -->
-  <script type="text/javascript" src="assets2/ckeditor/ckeditor.js"></script>
-  <!-- custom form component script for this page-->
-  <script src="js2/form-component.js"></script>
-  <!-- custome script for all page -->
+  <!--custome script for all page-->
   <script src="js2/scripts.js"></script>
   <script>
   function myFunction() {
@@ -294,36 +241,38 @@
 	   function redirect(){window.location = "homeendsession.jsp";}
 	   redirect();
 	  } else {
-		  function redirect2(){window.location = "englishquiz.jsp#";};
+		  function redirect2(){window.location = "testseriesadmin.jsp#";};
 		  redirect2();
 	  
 	  }
   }
   
   </script>
-  <script type ="text/javascript">  
+  <script type="text/javascript">
+
 function validation(){  
-	 var c = document.forms ["submit_ques_form"]["question"].value;  
-	    var c1 = document.forms ["submit_ques_form"]["opa"].value;  
-	    var u = document.forms["submit_ques_form"]["opb"].value;
-		  var p = document.forms["submit_ques_form"]["opc"].value;
-		  var n = document.forms["submit_ques_form"]["opd"].value;  
-		  var e = document.forms["submit_ques_form"]["correct"].value;  
-		  if (c == "" || c1 == "" || u == "" || p == "" ||n == "" ||e == "" ) {
-		    alert("All fields must be filled out");
+	 
+	    var u = document.forms["find_qid"]["qid"].value;
+		  
 		    
+		  if (u == "") {
+		    alert("Please fill the qusetion id");
 		  }
 		  else
-		     {
-		     	var frm = document.getElementsByName('submit_ques_form')[0];
-		  	   frm.submit(); // Submit the form
-		  	   frm.reset();  // Reset all form data
-		  	   return false; // Prevent page refresh
-		     }
+			  {
+			  var frm = document.getElementsByName('find_qid')[0];
+				frm.submit(); // Submit the form
+				frm.reset(); // Reset all form data
+				return false; // Prevent page refresh
+			  }
+	   
 }  
 </script>
 
+  
+                
 
 </body>
 
 </html>
+
